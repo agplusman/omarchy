@@ -41,6 +41,24 @@ Install these from the Arduino Library Manager:
 
 If the screen stays blank, change `OLED_ADDR` from `0x3C` to `0x3D`.
 
+## Reference photos
+
+Stills from a reference build (watermark: raspduino), stored in `reference/`.
+
+| Photo | What it shows |
+| --- | --- |
+| [01-display-side-view.png](reference/01-display-side-view.png) | The OLED lies flat on the breadboard next to the ESP32. The display is off. |
+| [02-placing-cube.png](reference/02-placing-cube.png) | The beam-splitting cube is set directly on the display face. |
+| [03-hologram-running.png](reference/03-hologram-running.png) | The finished effect: white text and an icon float inside the cube in a dim room. |
+| [04-wiring-esp32-s3.png](reference/04-wiring-esp32-s3.png) | Close-up of the wiring: four jumper wires from an ESP32-S3-WROOM-1 to the OLED header. |
+
+What the photos tell us about this build:
+
+- The board is an ESP32-S3 (ESP32-S3-WROOM-1), not a classic ESP32. GPIO 21/22 are not the default I²C pins on the S3. Pick two free GPIOs (for example GPIO 8 = SDA, GPIO 9 = SCL) and set `SDA_PIN` / `SCL_PIN` to match your wires.
+- The OLED header is labelled VCC, GND, SCL, SDA, in that order. Some modules use GND, VCC, SCL, SDA. Always read the labels before you connect power.
+- The display looks larger than 0.96", probably a 1.3" 128x64 module. Many 1.3" modules use the SH1106 driver, not SSD1306. If the image is shifted by 2 pixels or shows noise at one edge, use the `Adafruit SH110X` library (`Adafruit_SH1106G`) in place of `Adafruit_SSD1306`.
+- In photo 03 the text reads correctly through the cube while the printed pin labels below it appear mirrored. This confirms that the firmware must draw a mirrored image.
+
 ## Tips for a good hologram effect
 
 - The cube shows a mirror image. The sketch mirrors everything it draws, so text reads correctly through the glass. Set `MIRROR` to `false` to look at the bare display.
