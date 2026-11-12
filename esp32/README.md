@@ -27,6 +27,19 @@ Classic ESP32:
 | SDA | GPIO 21 |
 | SCL | GPIO 22 |
 
+ESP32-C3 SuperMini (see the [wiring diagram](wiring-esp32-c3.svg) and the [buy list](BUY-LIST.md)):
+
+![ESP32-C3 wiring diagram](wiring-esp32-c3.png)
+
+| OLED pin | ESP32-C3 pin |
+| --- | --- |
+| VCC | 3V3 |
+| GND | GND |
+| SDA | GPIO 8 |
+| SCL | GPIO 9 |
+
+On the SuperMini, GPIO 8 also drives the onboard LED and GPIO 9 is the BOOT button. Both work for I²C; the LED may glow faintly while the display runs.
+
 ESP32-S3 (the board in the reference photos):
 
 | OLED pin | ESP32-S3 pin |

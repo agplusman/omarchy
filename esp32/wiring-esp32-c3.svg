@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" font-family="Helvetica, Arial, sans-serif">
+  <rect width="900" height="600" fill="#ffffff"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a1a1a">ESP32-C3 SuperMini → 128x64 I²C OLED</text>
+
+  <!-- ESP32-C3 SuperMini board (top view, USB-C at top) -->
+  <rect x="80" y="120" width="200" height="340" rx="10" fill="#1f2a44"/>
+  <rect x="150" y="104" width="60" height="26" rx="6" fill="#b8bcc4" stroke="#6b7280"/>
+  <text x="180" y="122" text-anchor="middle" font-size="11" fill="#1a1a1a">USB-C</text>
+  <rect x="130" y="370" width="100" height="60" rx="4" fill="#c9ccd2"/>
+  <text x="180" y="398" text-anchor="middle" font-size="11" fill="#1a1a1a">ESP32-C3</text>
+  <text x="180" y="413" text-anchor="middle" font-size="10" fill="#1a1a1a">SuperMini</text>
+  <g font-size="12" fill="#ffffff">
+    <g fill="#d4a017"><circle cx="100" cy="170" r="6"/><circle cx="100" cy="208" r="6"/><circle cx="100" cy="246" r="6"/><circle cx="100" cy="284" r="6"/><circle cx="100" cy="322" r="6"/><circle cx="100" cy="360" r="6"/><circle cx="100" cy="398" r="6"/><circle cx="100" cy="436" r="6"/>
+    <circle cx="260" cy="170" r="6"/><circle cx="260" cy="208" r="6"/><circle cx="260" cy="246" r="6"/><circle cx="260" cy="284" r="6"/><circle cx="260" cy="322" r="6"/><circle cx="260" cy="360" r="6"/><circle cx="260" cy="398" r="6"/><circle cx="260" cy="436" r="6"/></g>
+    <text x="114" y="174">5V</text><text x="114" y="212" font-weight="bold">GND</text><text x="114" y="250" font-weight="bold">3V3</text><text x="114" y="288">4</text><text x="114" y="326">3</text><text x="114" y="364">2</text><text x="114" y="402">1</text><text x="114" y="440">0</text>
+    <g text-anchor="end"><text x="246" y="174">5</text><text x="246" y="212">6</text><text x="246" y="250">7</text><text x="246" y="288" font-weight="bold">8</text><text x="246" y="326" font-weight="bold">9</text><text x="246" y="364">10</text><text x="246" y="402">20</text><text x="246" y="440">21</text></g>
+  </g>
+
+  <!-- OLED module -->
+  <rect x="560" y="150" width="290" height="190" rx="10" fill="#1d5fa8"/>
+  <rect x="625" y="172" width="205" height="140" rx="3" fill="#0b0b0b"/>
+  <text x="727" y="238" text-anchor="middle" font-size="13" fill="#e5e7eb">0.96" / 1.3" OLED</text>
+  <text x="727" y="256" text-anchor="middle" font-size="11" fill="#9ca3af">white, 128x64, I²C</text>
+  <g fill="#d4a017"><circle cx="580" cy="190" r="6"/><circle cx="580" cy="225" r="6"/><circle cx="580" cy="260" r="6"/><circle cx="580" cy="295" r="6"/></g>
+  <g font-size="12" fill="#ffffff" font-weight="bold"><text x="592" y="194">VCC</text><text x="592" y="229">GND</text><text x="592" y="264">SCL</text><text x="592" y="299">SDA</text></g>
+  <rect x="612" y="356" width="230" height="34" rx="4" fill="none" stroke="#6b7280" stroke-dasharray="5 4"/>
+  <text x="727" y="377" text-anchor="middle" font-size="12" fill="#4b5563">beam-splitter cube sits on the screen</text>
+
+  <!-- Wires -->
+  <g fill="none" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <polyline stroke="#d62828" points="100,246 40,246 40,80 520,80 520,190 580,190"/>
+    <polyline stroke="#111111" points="100,208 55,208 55,95 505,95 505,225 580,225"/>
+    <polyline stroke="#e9b500" points="260,322 450,322 450,260 580,260"/>
+    <polyline stroke="#1f77d0" points="260,284 480,284 480,295 580,295"/>
+  </g>
+
+  <!-- Legend -->
+  <g font-size="14" fill="#1a1a1a">
+    <text x="80" y="508" font-weight="bold">Connections</text>
+    <line x1="80" y1="530" x2="110" y2="530" stroke="#d62828" stroke-width="4"/><text x="118" y="535">3V3 → VCC</text>
+    <line x1="240" y1="530" x2="270" y2="530" stroke="#111111" stroke-width="4"/><text x="278" y="535">GND → GND</text>
+    <line x1="400" y1="530" x2="430" y2="530" stroke="#e9b500" stroke-width="4"/><text x="438" y="535">GPIO 9 → SCL</text>
+    <line x1="570" y1="530" x2="600" y2="530" stroke="#1f77d0" stroke-width="4"/><text x="608" y="535">GPIO 8 → SDA</text>
+  </g>
+  <text x="80" y="570" font-size="12" fill="#4b5563">Pin order differs between modules: always connect by the printed labels, not by position. Do not use 5V for VCC.</text>
+</svg>
