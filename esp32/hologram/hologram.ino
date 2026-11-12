@@ -1,20 +1,37 @@
-// ESP32 Hologram: spinning wireframe cube on an SSD1306 OLED,
+// ESP32 Hologram: spinning wireframe cube on a 128x64 OLED,
 // mirrored so it reads correctly through a beam-splitting cube.
 
 #include <Wire.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 #include <math.h>
+
+// ---- Settings -------------------------------------------------------
+#define USE_SH1106 0     // 0 = SSD1306 (0.96"), 1 = SH1106 (many 1.3" modules)
+#define OLED_ADDR 0x3C   // try 0x3D if the screen stays blank
+const bool MIRROR = true;  // mirror horizontally for the beam-splitter cube
+
+// I2C pins: picked automatically from the board you select in the IDE.
+#if defined(CONFIG_IDF_TARGET_ESP32)
+  #define SDA_PIN 21
+  #define SCL_PIN 22
+#else  // ESP32-S3, C3, C6: no fixed I2C pins, change to match your wires
+  #define SDA_PIN 8
+  #define SCL_PIN 9
+#endif
+// ---------------------------------------------------------------------
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-#define OLED_ADDR 0x3C   // try 0x3D if the screen stays blank
-#define SDA_PIN 21       // classic ESP32 defaults; change for S3/C3/C6
-#define SCL_PIN 22
 
-const bool MIRROR = true;  // mirror horizontally for the beam-splitter cube
-
-Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#if USE_SH1106
+  #include <Adafruit_SH110X.h>
+  Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+  #define WHITE_PX SH110X_WHITE
+#else
+  #include <Adafruit_SSD1306.h>
+  Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+  #define WHITE_PX SSD1306_WHITE
+#endif
 
 const float vertices[8][3] = {
   {-1, -1, -1}, { 1, -1, -1}, { 1,  1, -1}, {-1,  1, -1},
@@ -34,12 +51,17 @@ int16_t mx(int16_t x) {
 }
 
 void drawLineM(int16_t x0, int16_t y0, int16_t x1, int16_t y1) {
-  display.drawLine(mx(x0), y0, mx(x1), y1, SSD1306_WHITE);
+  display.drawLine(mx(x0), y0, mx(x1), y1, WHITE_PX);
 }
 
 void setup() {
   Wire.begin(SDA_PIN, SCL_PIN);
-  if (!display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR)) {
+#if USE_SH1106
+  bool ok = display.begin(OLED_ADDR, true);
+#else
+  bool ok = display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
+#endif
+  if (!ok) {
     for (;;) delay(1000);  // display not found; check wiring and address
   }
   display.clearDisplay();

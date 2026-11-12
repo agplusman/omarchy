@@ -14,9 +14,11 @@ An ESP32 drives a small OLED display. A beam-splitting cube sits on top of the d
 - ESP32-S3: use it if you plan to add AI, a camera module or complex media.
 - ESP32-C3 / C6: use it for low cost or newer wireless features (the C6 has Wi-Fi 6).
 
-On the S3, C3 and C6 there are no fixed I²C pins. Choose two free GPIOs and set `SDA_PIN` and `SCL_PIN` in the sketch.
+On the S3, C3 and C6 there are no fixed I²C pins. The sketch picks the pins from the board you select in the Arduino IDE: GPIO 21/22 on a classic ESP32, GPIO 8 (SDA) / GPIO 9 (SCL) on the others. Change `SDA_PIN` and `SCL_PIN` if you wire different pins.
 
 ## Wiring
+
+Classic ESP32:
 
 | OLED pin | ESP32 pin |
 | --- | --- |
@@ -25,12 +27,22 @@ On the S3, C3 and C6 there are no fixed I²C pins. Choose two free GPIOs and set
 | SDA | GPIO 21 |
 | SCL | GPIO 22 |
 
+ESP32-S3 (the board in the reference photos):
+
+| OLED pin | ESP32-S3 pin |
+| --- | --- |
+| VCC | 3.3V |
+| GND | GND |
+| SDA | GPIO 8 |
+| SCL | GPIO 9 |
+
 ## Libraries
 
 Install these from the Arduino Library Manager:
 
 - `Adafruit SSD1306`
 - `Adafruit GFX Library`
+- `Adafruit SH110X` (only for SH1106 displays; set `USE_SH1106` to `1` in the sketch)
 
 ## Build and upload
 
@@ -54,9 +66,9 @@ Stills from a reference build (watermark: raspduino), stored in `reference/`.
 
 What the photos tell us about this build:
 
-- The board is an ESP32-S3 (ESP32-S3-WROOM-1), not a classic ESP32. GPIO 21/22 are not the default I²C pins on the S3. Pick two free GPIOs (for example GPIO 8 = SDA, GPIO 9 = SCL) and set `SDA_PIN` / `SCL_PIN` to match your wires.
+- The board is an ESP32-S3 (ESP32-S3-WROOM-1), not a classic ESP32. GPIO 21/22 are not the default I²C pins on the S3. Pick two free GPIOs (for example GPIO 8 = SDA, GPIO 9 = SCL) and the sketch uses these by default on non-classic boards.
 - The OLED header is labelled VCC, GND, SCL, SDA, in that order. Some modules use GND, VCC, SCL, SDA. Always read the labels before you connect power.
-- The display looks larger than 0.96", probably a 1.3" 128x64 module. Many 1.3" modules use the SH1106 driver, not SSD1306. If the image is shifted by 2 pixels or shows noise at one edge, use the `Adafruit SH110X` library (`Adafruit_SH1106G`) in place of `Adafruit_SSD1306`.
+- The display looks larger than 0.96", probably a 1.3" 128x64 module. Many 1.3" modules use the SH1106 driver, not SSD1306. If the image is shifted by 2 pixels or shows noise at one edge, set `USE_SH1106` to `1` in the sketch and install the `Adafruit SH110X` library.
 - In photo 03 the text reads correctly through the cube while the printed pin labels below it appear mirrored. This confirms that the firmware must draw a mirrored image.
 
 ## Tips for a good hologram effect
