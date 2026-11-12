@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" width="900" height="540" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e9a400"/></marker>
+  </defs>
+  <rect width="900" height="540" fill="#ffffff"/>
+  <text x="450" y="38" text-anchor="middle" font-size="22" font-weight="bold" fill="#1a1a1a">Side view: how the image reaches your eye</text>
+
+  <!-- breadboard and OLED -->
+  <rect x="240" y="392" width="420" height="34" rx="4" fill="#e5e7eb" stroke="#9ca3af"/>
+  <text x="450" y="414" text-anchor="middle" font-size="12" fill="#4b5563">breadboard</text>
+  <rect x="300" y="372" width="300" height="20" rx="3" fill="#1d5fa8"/>
+  <rect x="325" y="366" width="250" height="8" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="620" y="384" font-size="13" fill="#1a1a1a">OLED, screen facing UP</text>
+
+  <!-- cube -->
+  <rect x="330" y="130" width="240" height="236" fill="#dbeafe" fill-opacity="0.35" stroke="#64748b" stroke-width="2"/>
+  <line x1="330" y1="366" x2="570" y2="130" stroke="#475569" stroke-width="3"/>
+  <text x="472" y="128" font-size="13" fill="#475569" text-anchor="middle" transform="translate(0,-8)">half-mirror at 45°</text>
+
+  <!-- floating image (virtual, at far face) -->
+  <rect x="326" y="150" width="10" height="200" fill="#fde68a" stroke="#e9a400"/>
+  <text x="314" y="245" font-size="13" fill="#1a1a1a" text-anchor="end">the image seems</text>
+  <text x="314" y="262" font-size="13" fill="#1a1a1a" text-anchor="end">to float here</text>
+
+  <!-- light rays -->
+  <g stroke="#e9a400" stroke-width="3" fill="none">
+    <polyline points="390,366 390,306 735,306" marker-end="url(#ah)"/>
+    <polyline points="450,366 450,246 735,246" marker-end="url(#ah)"/>
+    <polyline points="510,366 510,186 735,186" marker-end="url(#ah)"/>
+  </g>
+  <g stroke="#e9a400" stroke-width="2" stroke-dasharray="5 5" fill="none" opacity="0.7">
+    <line x1="390" y1="306" x2="338" y2="306"/><line x1="450" y1="246" x2="338" y2="246"/><line x1="510" y1="186" x2="338" y2="186"/>
+  </g>
+
+  <!-- eye -->
+  <ellipse cx="820" cy="246" rx="30" ry="18" fill="#ffffff" stroke="#1a1a1a" stroke-width="2"/>
+  <circle cx="808" cy="246" r="9" fill="#1a1a1a"/>
+  <text x="830" y="282" font-size="13" fill="#1a1a1a" text-anchor="middle">your eye,</text>
+  <text x="830" y="298" font-size="13" fill="#1a1a1a" text-anchor="middle">at cube height</text>
+
+  <!-- steps -->
+  <g font-size="14" fill="#1a1a1a">
+    <text x="60" y="466">1. Light leaves the screen and goes straight up.</text>
+    <text x="60" y="490">2. The 45° half-mirror turns it 90° toward you.</text>
+    <text x="60" y="514">3. Your eye traces it back, so the picture seems to stand upright inside the cube.</text>
+  </g>
+</svg>

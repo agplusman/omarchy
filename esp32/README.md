@@ -2,6 +2,23 @@
 
 An ESP32 drives a small OLED display. A beam-splitting cube sits on top of the display. The cube reflects the image so it looks like it floats inside the glass (a Pepper's ghost effect).
 
+## How it works
+
+The image is not projected onto a wall or screen. It appears inside the cube, and you look straight into one side face.
+
+![Side view of the hologram](hologram-side-view.png)
+
+1. The OLED lies flat with the screen facing up. The cube sits on the screen.
+2. A half-mirror runs diagonally through the cube at 45°. It turns the light from the screen 90°, so it comes out of one side face.
+3. You see the picture standing upright inside the cube. The mirror is half see-through, so you also see the room behind it, and the picture seems to float.
+
+How to view it:
+
+- Look in at the height of the cube, not down from above.
+- Only one side face shows a bright image. Turn the cube on the screen until you find it.
+- Use a dim room. Light behind the cube washes out the image.
+- If the text is upside down, turn the display (or the whole board) 180°. You do not need to change the code.
+
 ## Hardware
 
 - Microcontroller: ESP32 DevKit (classic ESP32)
